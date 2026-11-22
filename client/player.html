@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SPaDe Family Player</title><link rel="stylesheet" href="/player.css"></head>
+<body><main><header><span>SPaDe <b>/</b> Family Player</span><button id="configure">Providers &amp; filters</button><button id="choose">Open movie</button></header>
+<section id="settings" hidden>
+<h2>Providers &amp; filters</h2>
+<p>Connect the account you want to use for movie analysis. Usage counts toward that account.</p>
+<form id="connection"><h3>Add a connection</h3><div class="grid">
+<label>Provider<select id="kind"></select></label><label>Connection name<input id="nickname" required></label>
+<label>API base URL<input type="url" id="url" required></label><label>Image and dialogue model<input id="model" required></label>
+<label>Transcription model <small>(if supported)</small><input id="speech"></label>
+<label>API key<input type="password" autocomplete="off" id="token"></label></div>
+<label><input type="checkbox" id="remember"> Remember key for my Windows account</label>
+<button type="submit">Save connection</button></form>
+<form id="preferences"><h3>Playback settings</h3><div class="grid">
+<label>Image and dialogue connection<select id="vision"></select></label>
+<label>Dialogue source<select id="audio"></select></label>
+<label>Filter level<select id="level"><option value="standard">Standard · explicit imagery and strong language</option><option value="strict">Strict · also suggestive imagery and milder language</option></select></label>
+<label>Visual scan rate<select id="fps"><option value="1">1 frame/sec · fewer requests</option><option value="2" selected>2 frames/sec · balanced</option><option value="4">4 frames/sec · closer coverage</option></select></label>
+</div><p id="speechHint"></p>
+<button type="submit">Use these settings</button> <button type="button" id="remove">Remove selected connection</button></form>
+<p id="settingsStatus" role="status"></p></section>
+<h1 id="title">Choose a movie to watch</h1><section class="screen"><video id="screen" playsinline></video></section>
+<div class="controls"><button id="play" disabled>Play</button><label class="seek">Movie position<input id="seek" type="range" min="0" max="0" value="0" step="0.25" disabled></label><output id="clock">0:00</output>
+<label>Volume<input id="volume" type="range" min="0" max="1" step=".05" value=".8"></label><button id="full">Full screen</button></div>
+<p id="status" role="status">Open a local movie to start.</p><p id="cache"></p>
+<form id="consent" hidden><h2>Analyze this movie?</h2><p id="destinations"></p><p>Your provider may charge for this analysis. Completed sections can replay offline with these settings.</p>
+<button type="submit">Allow and play with filters</button><button id="cancel" type="button">Close movie</button></form>
+<button id="retry" hidden>Retry section</button><button id="stop" hidden>Close movie</button><p id="error" role="alert"></p>
+</main><script src="/player.js"></script><script src="/settings.js"></script></body></html>
